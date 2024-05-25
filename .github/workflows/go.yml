@@ -9,7 +9,7 @@ on:
 
 jobs:
   go-build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
@@ -17,7 +17,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: "1.21"
+          go-version: "1.22"
 
       - name: Build
         run: go build ./...
@@ -27,7 +27,7 @@ jobs:
 
   docker-build-and-push:
     if: github.ref == 'refs/heads/main' && needs.go-build-and-test.result == 'success'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: go-build-and-test
     environment: secrets
     steps:
@@ -37,7 +37,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: "1.21"
+          go-version: "1.22"
 
       - name: Build
         run: go build -o ./bin/pwrstat-exporter ./main.go
