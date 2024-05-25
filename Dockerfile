@@ -4,11 +4,12 @@ FROM --platform=linux/amd64 debian:bullseye-slim AS runner
 
 # Install dependencies required by your application or the init script.
 RUN apt update && \
-    apt install wget -y && \
-    wget -O PPL.deb https://dl4jz3rbrsfum.cloudfront.net/software/PPL_64bit_v1.4.1.deb && \
-    dpkg -i PPL.deb && \
-    apt clean && \
-    rm -rf /var/lib/apt/lists/*
+  apt install wget -y && \
+  apt install libc6 \
+  wget -O PPL.deb https://dl4jz3rbrsfum.cloudfront.net/software/PPL_64bit_v1.4.1.deb && \
+  dpkg -i PPL.deb && \
+  apt clean && \
+  rm -rf /var/lib/apt/lists/*
 
 # Copy the pre-built binary into the image. Adjust the source path as necessary
 # to match the location where you're storing the compiled binary.
