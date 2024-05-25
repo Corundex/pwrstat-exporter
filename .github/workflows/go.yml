@@ -5,7 +5,7 @@ on:
     branches:
       - main
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   go-build-and-test:
@@ -17,7 +17,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
-          go-version: '1.21'  # or any other Go version
+          go-version: "1.21" # or any other Go version
 
       - name: Build
         run: go build ./...
@@ -48,4 +48,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: kerwenwwer/pwrstat-exporter:latest,kerwenwwer/pwrstat-exporter:${{ github.ref_name }}
+          tags: corundex/pwrstat-exporter:latest,corundex/pwrstat-exporter:${{ github.ref_name }}
