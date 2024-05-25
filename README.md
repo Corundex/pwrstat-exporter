@@ -3,7 +3,7 @@
 [![Go Build and Test, and Docker Build and Push](https://github.com/Corundex/pwrstat-exporter/actions/workflows/go.yml/badge.svg)](https://github.com/Corundex/pwrstat-exporter/actions/workflows/go.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/corundex/pwrstat-exporter)](https://goreportcard.com/report/github.com/corundex/pwrstat-exporter)
 [![GoDoc](https://godoc.org/github.com/corundex/pwrstat-exporter?status.svg)](https://godoc.org/github.com/corundex/pwrstat-exporter)
-[![Docker Pulls](https://img.shields.io/docker/pulls/corundex/pwrstat-exporter.svg?maxAge=0)](https://hub.docker.com/corundex/pwrstat-exporter/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/corundex/pwrstat-exporter.svg?maxAge=0)](https://hub.docker.com/repository/docker/corundex/pwrstat-exporter/general)
 
 A Prometheus exporter for CyberPower UPS Linux daemon (pwrstat).
 
