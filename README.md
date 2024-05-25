@@ -21,7 +21,44 @@ docker run \
   -d cardif99/pwrstat-exporter:latest
 ```
 
-Alternatively, refer to the provided [docker-compose.yaml](https://github.com/kerwenwwer/pwrstat-exporter/blob/main/docker-compose.yaml) for a Docker Compose setup.
+### Docker compose
+
+This use case demonstrates how to handle multiple UPS devices connected to the same machine.
+
+- privilege must be set to false.
+- Map only one device to each container; there is no need to rename them.
+- Remap port 8088 for each container to avoid conflicts.
+- Use the ALARM variable to mute the alarm beeper.
+
+```yaml
+services:
+
+  pwrstat_exporter_dev0:
+    image: corundex/pwrstat-exporter:latest
+    container_name: pwrstat-exporter
+    devices:
+      - /dev/bus/usb:/dev/bus/usb 
+      - /dev/usb/hiddev0:/dev/usb/hiddev0
+    privileged: false
+    environment:
+      - ALARM=off
+    restart: unless-stopped
+    ports:
+      - 8088:8088
+
+  pwrstat_exporter_dev1:
+    image: corundex/pwrstat-exporter:latest
+    container_name: pwrstat-exporter
+    devices:
+      - /dev/bus/usb:/dev/bus/usb 
+      - /dev/usb/hiddev1:/dev/usb/hiddev1
+    privileged: false
+    environment:
+      - ALARM=on
+    restart: unless-stopped
+    ports:
+      - 8089:8088
+```
 
 ## Building from Source
 Prerequisites
@@ -30,7 +67,7 @@ Prerequisites
 Clone the repository and build the executable:
 
 ```bash
-git clone https://github.com/kerwenwwer/pwrstat-exporter.git
+git clone https://github.com/corundex/pwrstat-exporter.git
 cd pwrstat-exporter
 go build && mv pwrstat-exporter /usr/local/bin/
 ```
@@ -71,5 +108,5 @@ sudo service pwrstat-exporter start
 ```
 
 ## Grafana Integration
-A custom Grafana dashboard is available for visualizing the data. Import the dashboard using the [grafana-dashboard.json](https://github.com/kerwenwwer/pwrstat-exporter/blob/main/grafana-dashboard.json) file.
+A custom Grafana dashboard is available for visualizing the data. Import the dashboard using the [grafana-dashboard.json](https://github.com/corundex/pwrstat-exporter/blob/main/grafana-dashboard.json) file.
 ![grafana](/image/grafana.png)
