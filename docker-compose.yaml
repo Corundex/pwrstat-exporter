@@ -1,12 +1,25 @@
-version: '2.1'
 services:
-  pwrstat_exporter:
-    image: cardif99/pwrstat-exporter:latest
+  pwrstat_exporter_dev0:
+    image: corundex/pwrstat-exporter:latest
     container_name: pwrstat-exporter
     devices:
       - /dev/bus/usb:/dev/bus/usb 
       - /dev/usb/hiddev0:/dev/usb/hiddev0
-    privileged: true
+    privileged: false
+    environment:
+      - ALARM=off
     restart: unless-stopped
     ports:
       - 8088:8088
+  pwrstat_exporter_dev1:
+    image: corundex/pwrstat-exporter:latest
+    container_name: pwrstat-exporter
+    devices:
+      - /dev/bus/usb:/dev/bus/usb 
+      - /dev/usb/hiddev1:/dev/usb/hiddev1
+    privileged: false
+    environment:
+      - ALARM=on
+    restart: unless-stopped
+    ports:
+      - 8089:8088
