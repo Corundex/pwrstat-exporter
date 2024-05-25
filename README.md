@@ -114,5 +114,12 @@ sudo service pwrstat-exporter start
 ```
 
 ## Grafana Integration
+
 A custom Grafana dashboard is available for visualizing the data. Import the dashboard using the [grafana-dashboard.json](https://github.com/corundex/pwrstat-exporter/blob/main/grafana-dashboard.json) file.
 ![grafana](/image/grafana.png)
+
+## Docker container's log
+
+Sample docker log on exporter's start.
+
+![pwrstat log](/image/container_log.png)

@@ -2,7 +2,7 @@ services:
 
   pwrstat_exporter_dev0:
     image: corundex/pwrstat-exporter:latest
-    container_name: pwrstat-exporter
+    container_name: pwrstat-dev0
     devices:
       - /dev/bus/usb:/dev/bus/usb 
       - /dev/usb/hiddev0:/dev/usb/hiddev0
@@ -15,7 +15,7 @@ services:
 
   pwrstat_exporter_dev1:
     image: corundex/pwrstat-exporter:latest
-    container_name: pwrstat-exporter
+    container_name: pwrstat-dev1
     devices:
       - /dev/bus/usb:/dev/bus/usb 
       - /dev/usb/hiddev1:/dev/usb/hiddev1
